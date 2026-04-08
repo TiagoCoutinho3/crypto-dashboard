@@ -2,22 +2,36 @@ import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { formatPercentage, formatUSD } from '../utils/formatters'
 
 interface CryptoCardProps {
+  id: string
   name: string
   symbol: string
   currentPrice: number
   change24h: number
+  isSelected: boolean
+  onSelect: (coinId: string) => void
 }
 
 export const CryptoCard = ({
+  id,
   name,
   symbol,
   currentPrice,
   change24h,
+  isSelected,
+  onSelect,
 }: CryptoCardProps) => {
   const isPositive = change24h >= 0
 
   return (
-    <article className="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5 shadow-lg shadow-black/20 backdrop-blur">
+    <button
+      type="button"
+      onClick={() => onSelect(id)}
+      className={`w-full rounded-2xl border bg-zinc-900/70 p-5 text-left shadow-lg shadow-black/20 backdrop-blur transition ${
+        isSelected
+          ? 'border-emerald-500/60 ring-1 ring-emerald-500/30'
+          : 'border-zinc-800 hover:border-zinc-700'
+      }`}
+    >
       <div className="mb-4 flex items-start justify-between">
         <div>
           <p className="text-sm text-zinc-400">{name}</p>
@@ -44,6 +58,13 @@ export const CryptoCard = ({
       >
         {formatPercentage(change24h)} (24h)
       </p>
-    </article>
+      <div className="mt-3 flex items-center gap-2 text-xs text-zinc-400">
+        <span className="relative flex h-3 w-3">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50"></span>
+          <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-400"></span>
+        </span>
+        Live
+      </div>
+    </button>
   )
 }

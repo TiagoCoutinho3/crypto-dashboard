@@ -1,18 +1,18 @@
 import { BarChart3, BriefcaseBusiness, Settings } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
 interface DashboardLayoutProps {
-  topCards: ReactNode
-  marketSection: ReactNode
+  children: ReactNode
 }
 
 const navItems = [
-  { label: 'Dashboard', icon: BarChart3, active: true },
-  { label: 'Portfolio', icon: BriefcaseBusiness, active: false },
-  { label: 'Settings', icon: Settings, active: false },
+  { label: 'Dashboard', icon: BarChart3, to: '/' },
+  { label: 'Portfolio', icon: BriefcaseBusiness, to: '/portfolio' },
+  { label: 'Settings', icon: Settings, to: '/settings' },
 ]
 
-export const DashboardLayout = ({ topCards, marketSection }: DashboardLayoutProps) => {
+export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 lg:grid-cols-[260px_1fr]">
@@ -21,31 +21,26 @@ export const DashboardLayout = ({ topCards, marketSection }: DashboardLayoutProp
             CryptoDash
           </h1>
           <nav className="space-y-2">
-            {navItems.map(({ label, icon: Icon, active }) => (
-              <a
+            {navItems.map(({ label, icon: Icon, to }) => (
+              <NavLink
                 key={label}
-                href="#"
-                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition ${
-                  active
+                to={to}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition ${
+                    isActive
                     ? 'bg-emerald-500/15 text-emerald-400'
                     : 'text-zinc-400 hover:bg-zinc-800/70 hover:text-zinc-100'
-                }`}
+                  }`
+                }
               >
                 <Icon size={18} />
                 {label}
-              </a>
+              </NavLink>
             ))}
           </nav>
         </aside>
 
-        <main className="p-4 sm:p-6 lg:p-8">
-          <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {topCards}
-          </section>
-          <section className="grid grid-cols-1 gap-6 xl:grid-cols-[1.2fr_1.8fr]">
-            {marketSection}
-          </section>
-        </main>
+        <main className="p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   )

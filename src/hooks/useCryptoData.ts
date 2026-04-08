@@ -18,3 +18,25 @@ export const useTopCoins = () =>
     staleTime: 60_000,
     retry: 1,
   })
+
+type ChartPeriod = '1' | '7' | '30' | '365'
+
+interface CoinChartResponse {
+  prices: [number, number][]
+}
+
+export const useCoinChartData = (coinId: string, days: ChartPeriod) =>
+  useQuery({
+    queryKey: ['coin-chart', coinId, days],
+    queryFn: async () => {
+      const { data } = await api.get<CoinChartResponse>(
+        `/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`,
+      )
+      return data.prices
+    },
+    enabled: Boolean(coinId),
+    staleTime: 60_000,
+    retry: 1,
+  })
+
+export type { ChartPeriod }

@@ -3,9 +3,15 @@ import { formatUSD } from '../utils/formatters'
 
 interface CryptoTableProps {
   coins: CryptoAsset[]
+  selectedCoinId: string
+  onSelectCoin: (coinId: string) => void
 }
 
-export const CryptoTable = ({ coins }: CryptoTableProps) => {
+export const CryptoTable = ({
+  coins,
+  selectedCoinId,
+  onSelectCoin,
+}: CryptoTableProps) => {
   return (
     <section className="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5 shadow-lg shadow-black/20">
       <div className="mb-4">
@@ -26,7 +32,13 @@ export const CryptoTable = ({ coins }: CryptoTableProps) => {
           </thead>
           <tbody>
             {coins.map((coin) => (
-              <tr key={coin.id} className="border-b border-zinc-900/80 text-zinc-200">
+              <tr
+                key={coin.id}
+                onClick={() => onSelectCoin(coin.id)}
+                className={`cursor-pointer border-b border-zinc-900/80 text-zinc-200 transition hover:bg-zinc-800/50 ${
+                  selectedCoinId === coin.id ? 'bg-zinc-800/50' : ''
+                }`}
+              >
                 <td className="px-3 py-3">{coin.market_cap_rank}</td>
                 <td className="px-3 py-3">
                   <div className="flex items-center gap-2">
