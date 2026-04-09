@@ -1,73 +1,21 @@
-# React + TypeScript + Vite
+# 📈 Crypto Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um painel interativo e responsivo para monitoramento de criptomoedas em tempo real, focado no consumo de APIs RESTful e renderização de dados dinâmicos com React.
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido para aplicar conceitos de arquitetura Cliente-Servidor, assincronicidade e gerenciamento de estados no Front-end, consolidando habilidades essenciais de Engenharia de Software.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Demonstração ao Vivo
+O projeto está em produção e pode ser acessado aqui:
+👉 **[Acessar Crypto Dashboard](https://crypto-dashboard-tiago-coutinho.vercel.app/)**
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
+- **React (com Vite):** Para uma renderização de interface ultrarrápida e componentização eficiente.
+- **JavaScript (ES6+) / React Hooks:** Uso intensivo de `useState` e `useEffect` para controle do ciclo de vida e estado da aplicação.
+- **Integração de API:** Consumo de dados via `fetch/axios` simulando um ambiente real de requisições HTTP (GET).
+- **CSS / Responsividade:** Layout fluido adaptável para Mobile e Desktop.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ✨ Funcionalidades
+- **Cotações em Tempo Real:** Conexão com API externa para buscar os valores atualizados das principais criptomoedas do mercado.
+- **Tratamento de Dados (JSON):** Parsing e formatação profissional de valores monetários (ex: separadores de milhar nativos).
+- **Gerenciamento de Erros:** Lógica de tratamento para casos de falha na API ou carregamento prolongado (Loading states).
+- **Interface Intuitiva:** Foco em UI/UX para apresentar dados financeiros complexos de forma limpa e direta.
