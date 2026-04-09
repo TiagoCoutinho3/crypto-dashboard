@@ -1,7 +1,7 @@
 export const SettingsPage = () => {
   return (
     <section className="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-6">
-      <h1 className="text-2xl font-semibold text-zinc-100">Settings</h1>
+      <h1 className="text-2xl font-semibold text-zinc-100">Configurações</h1>
     </section>
-  )
-}
+  );
+};
